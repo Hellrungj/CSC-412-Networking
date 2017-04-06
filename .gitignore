@@ -1,0 +1,10 @@
+*.pyc
+*.save
+.ssh
+.pip
+.profile
+.rnd
+.viminfo
+.bash_history
+.bash_logout
+.bashrc

@@ -3,13 +3,3 @@
 	name = Hellrungj
 [core]
 	excludesfile = /home/johnjameshellrung/.gitignore_global
-*.pyc
-*.save
-.ssh
-.pip
-.profile
-.rnd
-.viminfo
-.bash_history
-.bash_logout
-.bashrc

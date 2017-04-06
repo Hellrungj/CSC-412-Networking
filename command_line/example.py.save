@@ -1,0 +1,33 @@
+import os
+import sys
+
+def quit():
+    sys.exit()
+
+def list(mypath="/"):
+  f = []
+  for (dirpath, dirnames, filenames) in os.walk(mypath):
+    f.extend(filenames)
+    break
+  return f
+
+def check(data):
+  print(data)
+  #command =  data.split(" ")[1]
+  #if command.lower() == "quit":
+  if data.lower() in "quit":
+    sys.exit()
+  #if command.lower() == "print":
+  if data.lower() in "print":
+    message = data.split(" ")[2:]
+    return message
+  #if command.lower() == "ls":
+  if data.lower() in "ls":
+    return str(list())
+  
+if __name__ == '__main__':
+  print("Welcome to Python Command Line:")
+  while True:
+   user_input=raw_input(">")
+   print(check(user_input))    
+    

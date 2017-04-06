@@ -1,0 +1,35 @@
+#Name: John Hellrung
+import glob
+import os
+import sys
+
+def GLOB():
+  os.chdir("/")
+  for file in glob.glob("*.txt"):
+    print(file)
+def LISTDIR():
+  for file in os.listdir("/"):
+      if file.endswith(".txt"):
+          print(os.path.join("/", file))
+def WALK():   
+  for files in os.walk("/"):
+      for file in files:
+          if file.endswith(".py"):
+             print(os.path.join(root, file))
+if __name__ == "__main__":
+  if len(sys.argv) < 2:
+    print ("Usage: ")
+    print (" python testing2.py <method>")
+    print (" e.g. python testing2.py GLOB")
+    print
+    sys.exit()
+  method = sys.argv[1]
+  if method.lower() == 'glob':
+    GLOB()
+  elif method.lower() == 'listdir':
+    LISTDIR()
+  elif method.lower() == 'walk':
+    WALK()
+  else:
+    print('ERROR')
+    

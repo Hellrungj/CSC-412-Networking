@@ -1,0 +1,66 @@
+import os
+import sys
+
+def quit():
+  sys.exit()
+
+def MKDIR(newpath):
+  if not os.path.exists(newpath):
+    os.makedirs(newpath)
+    return "Created {0}.".format(newpath)
+  else:
+    return "ERROR: {0} already exists.".format(newpath) 
+
+def MKFILE(filename):
+  if not os.path.exists(filename):
+    f= open("filename","w+")
+    f.close()
+    return "Created {0}.".format(filename)
+  else:
+    return "ERROR: {0} already exists.".format(filename)
+
+def LIST():
+  path = os.path.dirname(os.path.abspath(__file__))
+  result = ""
+  for root, dirs, files in os.walk(path):
+    files = files[2]
+    print("FILES: {0}".format(files))
+    print("+++")
+    print("DIRS: {0}".format(dirs))
+    S_files = sorted(files, key=str.lower)
+    for file in S_files:
+      sys.stdout.write("{0} ".format(file))
+      result += "{0}  ".format(file)
+  return result 
+
+def PRINT(message):
+  message = message.split(" ")
+  del message[0]
+  return " ".join(message)
+
+def check(data):
+  command =  data.split(" ")[0]
+  command = command.lower()
+  if command == "quit" or command == "exit":
+    sys.exit()
+  elif command == "print":
+    return(PRINT(data))
+  elif command == "list":
+    return str(LIST())  
+  elif command == "mkdir":
+    return MKDIR(data.split(" ")[1])
+  elif command == "mkfile":
+    return MKFILE(data.split(" ")[1])
+  elif command == "move":
+    print("MOVED FILE")
+  elif command == "copy":
+    print("COPY FILE")
+  else:
+    print("ERROR: No such command exist")
+
+if __name__ == '__main__':
+  print("Welcome to Python Command Line:")
+  while True:
+    user_input=raw_input(">")
+    print(check(user_input))    
+    

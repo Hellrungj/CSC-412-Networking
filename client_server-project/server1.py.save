@@ -1,0 +1,34 @@
+import socket
+
+server_address = ('localhost', 10000)
+sock.bind(server_address)
+sock.listen(1)
+
+while True:
+  connection, client_address = sock.accept()
+  try:
+    while True:
+      data = sock.recv(16)
+      if data:
+        print(“Received: {0}\n”.format(data))
+      else:
+        break
+  finally:
+    sock.close()import socket
+
+server_address = ('localhost', 10000)
+sock.bind(server_address)
+sock.listen(1)
+
+while True:
+  connection, client_address = sock.accept()
+  try:
+    while True:
+      data = sock.recv(16)  
+      if data:
+        print(“Received: {0}\n”.format(data))
+      else:
+        break
+  finally:
+    sock.close()
+

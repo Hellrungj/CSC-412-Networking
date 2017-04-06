@@ -1,0 +1,4 @@
+
+from client_server import Client
+user = C
+user.send("A message")

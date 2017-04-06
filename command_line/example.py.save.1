@@ -1,0 +1,45 @@
+import os
+import sys
+
+def quit():
+  sys.exit()
+
+def LIST(mypath="/"):
+  f = []
+  for (dirpath, dirnames, filenames) in os.walk(mypath):
+    f.extend(filenames)
+    break
+  ret
+
+def check(data):
+  print(data)
+  command =  data.split(" ")[0]
+  if command.lower() == "quit":
+  #if data.lower() in "quit":
+    sys.exit()
+  elif data.lower() in "exit":
+    sys.exit()
+  elif command.lower() == "print":
+  #elif data.lower() in "print":
+    message = data.split(" ")[1:]
+    return message
+  #if command.lower() == "ls":
+  elif data.lower() in "ls":
+    return str(list())  
+  elif data.lower() in "mkdir":
+    print("MAKE DIRECTIORY")
+  elif data.lower() in "touch":
+    print("MAKE FILE")
+  elif data.lower() in "mv":
+    print("MOVED FILE")
+  elif data.lower() in "cp":
+    print("COPY FILE")
+  else:
+    print("ERROR")
+
+if __name__ == '__main__':
+  print("Welcome to Python Command Line:")
+  while True:
+    user_input=raw_input(">")
+    print(check(user_input))    
+    

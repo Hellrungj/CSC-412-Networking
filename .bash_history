@@ -1,39 +1,5 @@
 nano server.py 
 clear
-python server.py localhost 8889
-nano server.py 
-clear
-python server.py localhost 8889
-clear
-nano server.py 
-clear
-python server.py localhost 8889
-clear
-nano server.py 
-clear
-python server.py localhost 8889
-clear
-nano server.py 
-clear
-python server.py localhost 8889
-clear
-cd Protocol/
-clear
-python client.py localhost 8889
-clear
-ls
-clear
-cd Protocol/
-clear
-cd Protocol/
-python server.py localhost 8890
-clear
-nano server.py 
-clear
-python server.py localhost 8890
-clear
-nano server.py 
-clear
 nano server.py 
 clear
 nano server.py 
@@ -1998,3 +1964,37 @@ mkdir Protocol_Buffers
 cd Protocol_Buffers/
 clear
 ls
+clear
+cd Protocol_Revision/
+python client.py localhost 8888
+clear
+cd Protocol_Revision/
+python server.py localhost 8888
+clear
+ls
+git init
+git bach
+git init
+sudi easy_install git
+sudo easy_install git
+sudo apt-get install git-all
+clear
+ls
+git init
+git statsu
+git statuu
+git status
+git add --all
+clear
+git commit -m"First commit"
+git config --global user.email "hellrungj@berea.edu"
+git config --global user.name "Hellrungj"
+git commit -m"First commit"
+git remote add origin remote https://github.com/Hellrungj/CSC-412-Networking
+git push origin master
+git remote add origin https://github.com/Hellrungj/CSC-412-Networking
+git push origin master
+git pull origin master
+git add --all
+git commit -m"Merged files"
+git push origin master

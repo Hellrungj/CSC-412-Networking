@@ -1,3 +1,5 @@
 [user]
 	email = hellrungj@berea.edu
 	name = Hellrungj
+[core]
+	excludesfile = /home/johnjameshellrung/.gitignore_global

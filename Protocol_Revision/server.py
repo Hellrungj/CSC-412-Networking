@@ -89,6 +89,12 @@ def ALA_service(count):
   else:
     return False
 
+def md5(msg):
+  #Checksum
+  m = hashlib.md5()
+  m.update(msg)
+  return m.hexdigest()
+
 def generate_RSA():
   pass
 
@@ -129,14 +135,15 @@ def handle_message (msg):
   
   elif "DUMP" in msg:
     # Get the username
-    #username = msg.split(" ")[1]
-    # Checking user status
-    #if is_login(UD[username]) == True:
-    print(MBX)
-    print(IMQ)
-    return ("OK", "Dumped.")
-    #else:
-    #  return ("Error", "Current user is not login")    
+    username = msg.split(" ")[1]
+    if self.UD.get(username) == None:
+      return("ERROR","User does not exsited")
+    if is_login(UD[username]) == True:
+      print(MBX)
+      print(IMQ)
+      return ("OK", "Dumped.")
+    else:
+      return ("Error", "Current user is not login")    
 
   elif "REGISTER" in msg:
     # Get the username
@@ -154,6 +161,8 @@ def handle_message (msg):
   elif "MESSAGE" in msg:
     # Get the username
     username = msg.split(" ")[2]
+    if self.UD.get(username) == None:
+      return("ERROR","User does not exsited")
     #print("Username: {0}".format(username))
     if is_login(UD[username]) == True:
       # Get the content; slice everything after
@@ -169,6 +178,8 @@ def handle_message (msg):
   elif "STORE" in msg:
     # Get the username
     username = msg.split(" ")[2]
+    if self.UD.get(username) == None:
+      return("ERROR","User does not exsited")
     if is_login(UD[username]) == True:
       queued = IMQ.pop()
       print("Message in queue:\n---\n{0}\n---\n".format(queued))
@@ -180,6 +191,8 @@ def handle_message (msg):
   elif "COUNT" in msg:
     # Get the username
     username = msg.split(" ")[2]
+    if self.UD.get(username) == None:
+      return("ERROR","User does not exsited")
     if is_login(UD[username]) == True:
       return ("SEND", "COUNTED {0}".format(len(MBX[username])))
     else:
@@ -188,6 +201,8 @@ def handle_message (msg):
   elif "DELMSG" in msg:
     # Get the username
     username = msg.split(" ")[2]
+    if self.UD.get(username) == None:
+      return("ERROR","User does not exsited")
     if is_login(UD[username]) == True:
       MBX[username].pop(0)
       return ("OK", "Message deleted.")
@@ -197,6 +212,8 @@ def handle_message (msg):
   elif "GETMSG" in msg:
     # Get the username
     username = msg.split(" ")[2]
+    if self.UD.get(username) == None:
+      return("ERROR","User does not exsited")
     if is_login(UD[username]) == True:
       first = MBX[username][0]
       print ("First message:\n---\n{0}\n---\n".format(first) )
@@ -230,26 +247,34 @@ if __name__ == "__main__":
   
   RUNNING = True
   COUNTER = 0
+  N = 0
   while RUNNING:
-    try:
+    if N == 0:
       message, conn = get_message(sock)
+      #print("MESSAGE: [{0}]".format(message))
       if checksum(message):
         print("MESSAGE: [{0}]".format(message))  
-        result, msg = handle_message(message)  
+        result, msg = handle_message(message)
       else:
-        result, msg = ("ERROR","Data failed to transfer.")
+        result, msg = ("ERROR","Data failed to transfer.")     
         print ("Result: {0}\nMessage: {1}\n".format(result, msg))
       if ALA_service(COUNTER):
         result = "ERROR"
         msg = "Too many attemps.\nNubmer Attempted: {0}\nPlease try again in one hour.\nThank you,\nServer.".format(COUNTER + 1)
         RUNNING = False
       elif result == "ERROR":
-        conn.sendall(bytes("{0}: {1}\0".format(result,msg)))
+        CSmsg = "{0}: {1}".format(result, msg)
+        #print("CSmsg: {0}".format(CSmsg))
+        new_msg = md5(CSmsg)
+        conn.sendall(bytes("{2} {0}: {1}\0".format(result,msg,new_msg)))
         COUNTER += 1
       else:
-        conn.sendall(bytes("{0}: {1}\0".format(result,msg)))
+        CSmsg = "{0}: {1}".format(result, msg)
+        #print("CSmsg: {0}".format(CSmsg))
+        new_msg = md5(CSmsg)
+        conn.sendall(bytes("{2} {0}: {1}\0".format(result,msg,new_msg)))
         COUNTER = 0
-    except:
+    else:
       print("'else' reached.")
       RUNNING = False
     conn.close()

@@ -20,7 +20,7 @@ if __name__ == "__main__":
   RUNNING = True
   COUNTER = 0
   while RUNNING:
-    try:
+    if True:
       message, conn = sock.get_message()
       if sock.checksum(message):
         print("MESSAGE: [{0}]".format(message))
@@ -46,4 +46,4 @@ if __name__ == "__main__":
       print("'else' reached.")
       RUNNING = False
     conn.close()
-  sock.stop_server(sock)
+  sock.stop_server()

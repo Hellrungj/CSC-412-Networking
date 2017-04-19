@@ -4,18 +4,20 @@
 # Messaging Server v0.1.0
 import socket
 import hashlib
+from LOGGING import Logging
 
 class Server():
   def __init__(self, host, port):
     self.server_address = (host, port)
     self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)    
-    self.filename = "Log.txt"
-    self.file = None
+    self.Log = Logging("server_log.txt")
     self.UD = {}
     self.MBX = {}
-    self.IMQ = [] 
+    self.IMQ = []    
 
   def start_server (self):
+    self.Log.start_log()
+    self.Log.file.write("{0} Server started\n".format(self.Log.log_time()))
     self.socket.bind(self.server_address)
     self.socket.listen(1)
     return socket
@@ -23,7 +25,8 @@ class Server():
   def get_message (self):
     chars = []
     connection, client_address = self.socket.accept()
-    print ("Connection from [{0}]".format(client_address))
+    self.Log.file.write("{1} Connect by {0}\n".format(client_address, self.Log.log_time()))
+    print ("{1} Connection from [{0}]".format(client_address, self.Log.log_time()))
     try:
       while True:
         char = connection.recv(1) 
@@ -37,25 +40,14 @@ class Server():
       return (''.join(chars), connection)
 
   def stop_server (self):
+    self.Log.file.write("{0 }Server stoped\n".format(self.Log.log_time()))
+    self.Log.end_log()
     return self.socket.close()
 
   def is_login(self,user):
-    print("User: {0}".format(user))
+    print("{1} User: {0}".format(user, self.Log.log_time()))
     loginstatus = user[1]
     return loginstatus
-
-  def decode_md5(self,msg):
-    return hashlib.md5(msg).hexdigest()
-
-  def checksum(self, msg):
-    msg_splited = msg.split(" ")
-    chuck = msg_splited[0]
-    del msg_splited[0] 
-    rest_of_msg = " ".join(msg_splited)
-    if chuck == self.decode_md5(rest_of_msg):
-      return True
-    else:
-      return False
 
   def data_part (self, data, index):
     try:
@@ -69,16 +61,14 @@ class Server():
     else:
       return False
 
-  def md5(self,msg):
-    m = hashlib.md5()
-    m.update(msg)
-    return m.hexdigest()
-
   def generate_RSA(self):
     pass
 
   def handle_message (self,msg):
-    if "LOGIN" in msg:
+    if "CONNECT" in msg:
+      return("OK", "Connection is good.")
+
+    elif "LOGIN" in msg:
       username = msg.split(" ")[2]
       password = msg.split(" ")[3]
       if self.UD.get(username) == None:
@@ -88,6 +78,8 @@ class Server():
         return("ERROR","Password invald")
       else:
         UserData[1] = True
+        self.Log.file.write("{1} {0} login\n".format(username, 
+						self.Log.log_time()))
         return("LOGIN", "{0} login".format(username))
 
     elif "LOGOUT" in msg:
@@ -99,6 +91,8 @@ class Server():
       if UserData[0] != password:
         return("ERROR","Password invald")
       UserData[1] = False
+      self.Log.file.write("{1} {0} logout\n".format(username, 
+						self.Log.log_time()))
       return("LOGOUT","{0} logout".format(username)) 
   
     elif "DUMP" in msg:
@@ -108,6 +102,8 @@ class Server():
       if self.is_login(self.UD[username]) == True:
         print(self.MBX)
         print(self.IMQ)
+        self.Log.file.write("{1} {0} dumped MBX and IMQ\n".format(username,
+							self.Log.log_time()))
         return ("OK", "\nMBX: {0}\nIMQ: {1}".format(self.MBX[username],self.IMQ))
       else:
         return ("Error", "Current user is not login")    
@@ -120,6 +116,8 @@ class Server():
         password = msg.split(" ")[3]
         self.UD[username] = [password,False]
         self.MBX[username] = []
+        self.Log.file.write("{1} Registered {0}\n".format(username,
+							self.Log.log_time()))
         return ("OK", "Register.")   
 
     elif "MESSAGE" in msg:
@@ -129,6 +127,8 @@ class Server():
       if self.is_login(self.UD[username]) == True:
         content = msg.split(" ")[3:]
         self.IMQ.insert(0, " ".join(content))
+        self.Log.file.write("{1} {0} sent message\n".format(username, 
+							self.Log.log_time()))
         return ("OK", "Sent message.")
       else:
         return ("ERROR", "Current user is not login")
@@ -141,6 +141,8 @@ class Server():
         queued = self.IMQ.pop()
         print("Message in queue:\n---\n{0}\n---\n".format(queued))
         self.MBX[username].insert(0, queued)
+        self.Log.file.write("{1} {0} stored a message\n".format(username, 
+							self.Log.log_time()))
         return ("OK", "Stored message.")
       else:
         return ("ERROR", "Current user is not login")
@@ -150,6 +152,8 @@ class Server():
       if self.UD.get(username) == None:
         return("ERROR","User does not exsited")
       if self.is_login(self.UD[username]) == True:
+        self.Log.file.write("{1} {0} counted MBX\n".format(username, 
+							self.Log.log_time()))
         return ("SEND", "COUNTED {0}".format(len(self.MBX[username])))
       else:
         return ("ERROR", "Current user is not login")
@@ -160,6 +164,8 @@ class Server():
         return("ERROR","User does not exsited")
       if self.is_login(self.UD[username]) == True:
         self.MBX[username].pop(0)
+        self.Log.file.write("{1} {0} deleted a message\n".format(username, 
+							self.Log.log_time()))
         return ("OK", "Message deleted.")
       else:
         return ("Error", "Current user is not login")    
@@ -170,14 +176,18 @@ class Server():
         return("ERROR","User does not exsited")
       if self.is_login(self.UD[username]) == True:
         first = self.MBX[username][0]
+        self.Log.file.write("{1} {0} viewed a message\n".format(username,
+							 self.Log.log_time()))
         print ("First message:\n---\n{0}\n---\n".format(first) )
         return ("SEND", first)
       else:
         return ("ERROR", "Current user is not login")
 
     elif "HELP" in msg:
-      return ("SEND", "Command List:\nLOGIN: login <username>\nLOGOUT: logout <username>\nREGISTER: reg <username>\nDUMP: dump <username>\nMESSAGE: msg <username> <message>\nSTORE: store <username>\nCOUNT: count <username>\nDELMSG: delmsg <username>\nGETMSG: getmsg <username>")
+      self.Log.file.write("{0} Help was requested\n".format(self.Log.log_time()))
+      return ("Command List","\nFORMAT: (Name: Command)\nLOGIN: login <username>\nLOGOUT: logout <username>\nREGISTER: reg <username>\nDUMP: dump <username>\nMESSAGE: msg <username> <message>\nSTORE: store <username>\nCOUNT: count <username>\nDELMSG: delmsg <username>\nGETMSG: getmsg <username>")
 
     else:
       print("NO HANDLER FOR CLIENT MESSAGE: [{0}]".format(msg))
+      self.Log.file.write("{0} No Handler for client message\n".format(self.Log.log_time()))
       return ("ERROR", "No handler found for client message.")

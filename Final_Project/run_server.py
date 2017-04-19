@@ -1,5 +1,6 @@
 import sys
 from SERVER import Server
+from CHECKSUM import Checksum
 
 if __name__ == "__main__":
   # Check if the user provided all of the 
@@ -22,7 +23,8 @@ if __name__ == "__main__":
   while RUNNING:
     if True:
       message, conn = sock.get_message()
-      if sock.checksum(message):
+      check = Checksum(message)
+      if check.checksum():
         print("MESSAGE: [{0}]".format(message))
         result, msg = sock.handle_message(message)
       else:
@@ -34,16 +36,16 @@ if __name__ == "__main__":
         RUNNING = False
       elif result == "ERROR":
         CSmsg = "{0}: {1}".format(result, msg)
-        new_msg = sock.md5(CSmsg)
+        new_msg = check.md5(CSmsg)
         conn.sendall(bytes("{2} {0}: {1}\0".format(result,msg,new_msg)))
         COUNTER += 1
       else:
         CSmsg = "{0}: {1}".format(result, msg)
-        new_msg = sock.md5(CSmsg)
+        new_msg = check.md5(CSmsg)
         conn.sendall(bytes("{2} {0}: {1}\0".format(result,msg,new_msg)))
         COUNTER = 0
     else:
       print("'else' reached.")
       RUNNING = False
-    conn.close()
+    conn.close()    
   sock.stop_server()

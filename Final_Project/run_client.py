@@ -18,10 +18,11 @@ if __name__ == "__main__":
   PORT = int(sys.argv[2])
   TESTING = False
   sock = Client(HOST, PORT)
+  sock.start_client()
   if TESTING == False:
     while True:
       user_input=raw_input(">")
-      result = sock.check(user_input)
+      result = sock.parser(user_input)
       if not result == "ERROR":
         sock.send_recv(result)
   else:

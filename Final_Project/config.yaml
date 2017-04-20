@@ -1,0 +1,23 @@
+# The log file location
+log:
+  filename: "DAS.log"
+
+# All the databases used by the system
+databases:
+  dev: "data/db.sqlite"
+  stage: ""
+  prod: ""
+  engine: "peewee.SqliteDatabase"
+# For every config option for flask
+# For every table in the database, add an item here
+models:
+  mainDB:
+  - UD
+  - MBX
+  
+flask:
+  secret_key: '123456790'
+  debug: True
+flask_security:
+  security_password_hash: "pbkdf2_sha512"
+  security_password_salt: "ATGUOHAELKiubahiughaerGOJAEGj"

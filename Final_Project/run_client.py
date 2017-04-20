@@ -22,7 +22,7 @@ if __name__ == "__main__":
   if TESTING == False:
     while True:
       user_input=raw_input(">")
-      result = sock.parser(user_input)
+      result = sock.interpret(user_input)
       if not result == "ERROR":
         sock.send_recv(result)
   else:

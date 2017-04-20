@@ -2,7 +2,7 @@
 import socket
 import sys
 import hashlib #For the checksum
-from PARSER import Parser
+from INTERPRETER import Interpreter
 from CHECKSUM import Checksum
 from LOGGING import Logging
 
@@ -74,9 +74,9 @@ class Client():
     self.Log.file.write("{0} Client started\n".format(self.Log.log_time()))
     self.send("CONNECT")    
     
-  def parser(self, data):
-    #print("PARSERING")   
-    run = Parser(data)
+  def interpret(self, data):
+    #print("INTERPRETING")   
+    run = Interpreter(data)
     msg = run.check()
     if msg in "EXIT":
       self.Log.file.write("{0} Client ended\n".format(self.Log.log_time()))

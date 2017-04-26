@@ -1,6 +1,6 @@
 import sys
 import random
-from app import app
+from app import *
 
 def client_setup(host,port_range):
   port = port_range[0]

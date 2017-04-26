@@ -1,7 +1,6 @@
 import sys
 import random
-from SERVER import Server
-from CHECKSUM import Checksum
+from app import app
 
 def server_setup(host,port_range):
   port = port_range[0]

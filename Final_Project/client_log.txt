@@ -1,3 +1,37 @@
-04-20-2017 13:22:10 Client started
-04-20-2017 13:22:21 MSG: REGISTER hellrungj Natioh22
-04-20-2017 13:22:24 Client ended
+04-26-2017 05:39:55 Client started
+04-26-2017 05:40:06 MSG: TEST Test1.txt
+04-26-2017 05:40:06 MSG: LOGIN Admin Password
+04-26-2017 05:40:06 MSG: df0b19c6ce5716c66ba33635d6cf0647 LOGIN: Admin has successfully logged in.
+04-26-2017 05:40:06 MSG: REGISTER hellrungj Natioh22 hellrung@berea.edu
+04-26-2017 05:40:06 MSG: 07e71ccc928238dfe1ffd57e7487fd87 ERROR: The user has already been registered
+04-26-2017 05:40:06 MSG: LOGIN hellrungj Natioh22
+04-26-2017 05:40:06 MSG: a20d0438d3924c1fad61f3d9a3fe47b7 LOGIN: hellrungj has successfully logged in.
+04-26-2017 05:40:06 MSG: MESSAGE hellrungj Admin ;One:Hello World
+04-26-2017 05:40:06 MSG: e84617dde3dd25f3298f46b6d1859db8 OK: Sented message.
+04-26-2017 05:40:06 MSG: GETMSG hellrungj One
+04-26-2017 05:40:06 MSG: f5de832afaec7c765916d299072635aa SEND: Hello World
+04-26-2017 05:40:06 MSG: GETMSG Admin First Message
+04-26-2017 05:40:06 MSG: c1d4bd60d09f86ea4efe146a7e404fe2 SEND: I am the Admin!
+04-26-2017 05:40:06 MSG: COUNT hellrungj
+04-26-2017 05:40:06 MSG: ae3be9deefa8c9974bc4e5949766ef21 SEND: Counted 1 message
+04-26-2017 05:40:06 MSG: COUNT Admin
+04-26-2017 05:40:06 MSG: ae3be9deefa8c9974bc4e5949766ef21 SEND: Counted 1 message
+04-26-2017 05:40:06 MSG: DUMP Admin
+04-26-2017 05:40:06 MSG: a9b3e50052f025ed13fa9eea86e92f69 OK: MBX: [('OWNER:', u'Admin', 'SENDER:', u'Admin', 'TITLE:', u'First Message', 'MESSAGE:', u'I am the Admin!'), ('OWNER:', u'cjman', 'SENDER:', u'hellrungj', 'TITLE:', u'Hello', 'MESSAGE:', u'Hey .'), ('OWNER:', u'hellrungj', 'SENDER:', u'Admin', 'TITLE:', u'One', 'MESSAGE:', u'Hello World')]
+Users:[('USERNAME:', u'Admin', 'PASSWORD:', u'Password', 'EMAIL:', u'hellrungj@berea.edu', 'LOGIN:', True), ('USERNAME:', u'hellrungj', 'PASSWORD:', u'Natioh22', 'EMAIL:', u'hellrung@berea.edu', 'LOGIN:', True), ('USERNAME:', u'cjman', 'PASSWORD:', u'password', 'EMAIL:', u'cjman@me.com', 'LOGIN:', True)]
+Roles:[('NAME:', u'Admin', 'DESCRIPTION:', u'Admin - Full Access')]
+UserRoles:[('USER:', u'1', 'ROLE:', u'1')]
+04-26-2017 05:40:06 MSG: DELMSG hellrungj One
+04-26-2017 05:40:06 MSG: 679e5c2968298e34fd5c1d1afc49d07b OK: Message deleted.
+04-26-2017 05:40:06 MSG: COUNT hellrungj
+04-26-2017 05:40:06 MSG: afbc0359eb8fa9bdab58eeb51d659caa SEND: Counted 0 message
+04-26-2017 05:40:06 MSG: DUMP Admin
+04-26-2017 05:40:06 MSG: c966102d4e614a75772b6fce8877c53e OK: MBX: [('OWNER:', u'Admin', 'SENDER:', u'Admin', 'TITLE:', u'First Message', 'MESSAGE:', u'I am the Admin!'), ('OWNER:', u'cjman', 'SENDER:', u'hellrungj', 'TITLE:', u'Hello', 'MESSAGE:', u'Hey .')]
+Users:[('USERNAME:', u'Admin', 'PASSWORD:', u'Password', 'EMAIL:', u'hellrungj@berea.edu', 'LOGIN:', True), ('USERNAME:', u'hellrungj', 'PASSWORD:', u'Natioh22', 'EMAIL:', u'hellrung@berea.edu', 'LOGIN:', True), ('USERNAME:', u'cjman', 'PASSWORD:', u'password', 'EMAIL:', u'cjman@me.com', 'LOGIN:', True)]
+Roles:[('NAME:', u'Admin', 'DESCRIPTION:', u'Admin - Full Access')]
+UserRoles:[('USER:', u'1', 'ROLE:', u'1')]
+04-26-2017 05:40:06 MSG: LOGOUT Admin Password
+04-26-2017 05:40:06 MSG: b49b5dc98e84d6e519b99e8788a270ac LOGOUT: Admin has successfully logged in
+04-26-2017 05:40:06 MSG: LOGOUT hellrungj Natioh22
+04-26-2017 05:40:06 MSG: eb8ec0e37d0dc7b81a83b1d088bd6b71 LOGOUT: hellrungj has successfully logged in
+04-26-2017 05:40:10 Client ended

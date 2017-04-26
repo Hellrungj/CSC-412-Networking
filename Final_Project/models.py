@@ -1,10 +1,4 @@
 from peewee import *
-from flask_peewee.db import Database
-from flask_security import UserMixin, RoleMixin
-
-import os
-#from allImports import *   #Don't believe this import is needed for this file
-# Create a database
 from loadConfig import *
 
 cfg = load_config('config.yaml')
@@ -15,17 +9,34 @@ class BaseModel(Model):
   class Meta:
     database = db
 
-class UD(BaseModel, UserMixin):
+class User(BaseModel):
   username = CharField(max_length=80)
   password = TextField()
+  email = TextField()
   login = BooleanField(default=False)
     
   def __unicode__(self):       
     return self.username
 
-class MBX(BaseModel):
-  username = CharField(max_length=80)
-  message = TextField()
+class Role(BaseModel):
+  name = CharField(max_length=80)
+  description = TextField()
+
+  def __unicode__(self):
+    return self.role
+
+class User_Role(BaseModel):
+  user = CharField(max_length=80)
+  role = CharField(max_length=80)
+
+  def __unicode__(self):
+    return self.username
+
+class MailBox(BaseModel):
+  owner = CharField(max_length=80)
+  sender = CharField(max_length=80)
+  title = TextField()
+  message = TextField()  
 
   def __unicode__(self):
     return self.username

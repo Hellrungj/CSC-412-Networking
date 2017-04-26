@@ -29,15 +29,30 @@ class Client():
     finally:
       return ''.join(chars)
 
+  def Test(self, filename):
+    f = open(filename, "r")
+    file = f.readlines()
+    Counter = 0
+    while True:
+      line = file[Counter]
+      if "EOF" in line:
+        break  
+      else:      
+        command = line.split("\n")[0]     
+        self.Log.file.write("{0} MSG: {1}\n".format(self.Log.log_time(),command))
+        print(">MSG: {0}".format(command))
+        self.send_recv(command)
+      Counter += 1
+
   def send(self, msg):
     check = Checksum(msg)
-    print("MSG: {0}".format(msg))
+    #print("MSG: {0}".format(msg))
     self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     self.socket.connect(self.server_address)
     msg = "{1} {0}".format(msg,check.md5(msg)) #Checksum
     length = self.socket.send(bytes(msg + "\0"))
-    print ("SENT MSG: '{0}'".format(msg))
-    print ("CHARACTERS SENT: [{0}]".format(length))
+    #print ("SENT MSG: '{0}'".format(msg))
+    #print ("CHARACTERS SENT: [{0}]".format(length))
 
   def recv(self):
     response = self.receive_message()
@@ -45,7 +60,10 @@ class Client():
     check = Checksum(response)
     if not check.checksum():
       response = ("ERROR","Data failed to transfer.")
-    print("RESPONSE: [{0}]".format(response))
+    #print("RESPONSE: [{0}]".format(response))
+    new_response = response.split(" ")
+    print(" ".join(new_response[2:]))
+    self.Log.file.write("{0} MSG: {1}\n".format(self.Log.log_time(),response))
     self.socket.close()
     return response
 
@@ -85,9 +103,5 @@ class Client():
     else:
       self.Log.file.write("{0} MSG: {1}\n".format(self.Log.log_time(),msg))
       return msg 
-
-  def TEST(self):
-    # FIX ME: make this file
-    pass
 
 

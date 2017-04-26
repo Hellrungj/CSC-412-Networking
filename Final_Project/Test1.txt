@@ -1,0 +1,15 @@
+LOGIN Admin Password
+REGISTER hellrungj Natioh22 hellrung@berea.edu
+LOGIN hellrungj Natioh22
+MESSAGE hellrungj Admin ;One:Hello World
+GETMSG hellrungj One
+GETMSG Admin First Message
+COUNT hellrungj
+COUNT Admin
+DUMP Admin
+DELMSG hellrungj One
+COUNT hellrungj
+DUMP Admin
+LOGOUT Admin Password
+LOGOUT hellrungj Natioh22
+EOF

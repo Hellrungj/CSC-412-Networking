@@ -11,7 +11,7 @@ class Logging():
 
   def start_log(self):
     # Add a statement thaa looks for log file
-    self.file = open(self.filename, "w+")
+    self.file = open(self.filename, "w")
     print("{1} Created {0}".format(self.filename, self.log_time()))
 
   def end_log(self):

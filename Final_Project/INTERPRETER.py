@@ -3,7 +3,7 @@ class Interpreter():
     self.data = data 
 
   def data_part (self, index):
-    # Slices the data and return selected uppercased sliced part 
+    #Slices the data and return selected uppercased sliced part 
     #print("Data: {0}, Index: {1}".format(data,index))
     try:
       return self.data.split(" ")[index]
@@ -20,8 +20,8 @@ class Interpreter():
     if password == password2:
       return True
     else:
-      return False
-
+      return False  
+ 
   def check(self):
     """ Checks if the user input command and then calls the command functions """
     command = self.data_part(0)
@@ -37,9 +37,11 @@ class Interpreter():
         else:
           password = raw_input("Create password:")
           conf_pass = raw_input("Confirm password:")
+          email = raw_input("Email Address:")
           if self.confirm(password, conf_pass) == True:
-            return "REGISTER {username} {password}".format(username=self.data_part(1),
-                                                          password=password)
+            return "REGISTER {username} {password} {email}".format(username=self.data_part(1),
+                                                          password=password,
+                                                          email = email)
           else:
             print("Your passwords is not same")
             return("ERROR")
@@ -67,11 +69,16 @@ class Interpreter():
       elif command == "MSG":
         if self.data_part(1) == False:
           print("Usage:")
-          print("MSG: <username> <message>")
+          print("MSG: <username>")
           return("ERROR")
         else:
-          return "MESSAGE {username} {message}.".format(username=self.data_part(1),
-                                                        message=self.MSG())
+          sender = raw_input("Sender:")
+          title = raw_input("Title:")
+          message = raw_input("Message:")
+          return "MESSAGE {username} {sender} ;{title}:{message}.".format(username=self.data_part(1),
+							sender=sender,
+							title=title,
+                                                        message=message)
 
       elif command == "DUMP":
         if self.data_part(1) == False:
@@ -80,14 +87,6 @@ class Interpreter():
           return("ERROR")
         else:
           return "DUMP {username}".format(username=self.data_part(1))
-
-      elif command == "STORE":
-        if self.data_part(1) == False:
-          print("Usage:")
-          print("STORE: <username>")
-          return("ERROR")
-        else:
-          return "STORE {username}".format(username=self.data_part(1))
 
       elif command == "COUNT":
         if self.data_part(1) == False:
@@ -103,7 +102,9 @@ class Interpreter():
           print("GETMSG: <username>")
           return("ERROR")
         else:
-          return "GETMSG {username}".format(username=self.data_part(1))
+          title = raw_input("Message Title:")
+          return "GETMSG {username} {title}".format(username=self.data_part(1),
+					    title = title)
 
       elif command == "DELMSG":
         if self.data_part(1) == False:
@@ -111,13 +112,20 @@ class Interpreter():
           print("DELMSG: <username>")
           return("ERROR")
         else:
-          return "DELMSG {username}".format(username=self.data_part(1))
+          title = raw_input("Message Title:")   
+          return "DELMSG {username} {title}".format(username=self.data_part(1),
+					    title = title)
 
       elif command == "EXIT" or command == "QUIT":
         return "EXIT"
 
       elif command == "TEST":
-        TEST()
+        if self.data_part(1) == False:
+          print("Usage:")
+          print("TEST: <filename>")
+          return("ERROR")
+        else:
+          return "TEST {filename}".format(filename = self.data_part(1))
 
       elif command == "HELP":
         return "HELP"

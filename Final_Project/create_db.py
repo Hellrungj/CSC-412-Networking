@@ -56,8 +56,17 @@ db.create_tables(get_classes('mainDB'))
 
 # Creating the DASAdmin User and Role and Assigning the User a Role of Admin
 
-user1 = UD (username = "Admin",
-	    password = "Password").save() 
+User1 = User(username = "Admin",
+             password = "Password",
+             email = "hellrungj@berea.edu" ).save() 
 
-message1 = MBX (username = "Admin",
-		message = "I am the Admin!").save()
+Role1 =  Role(name = "Admin",
+              description = "Admin - Full Access").save()
+
+User_Role(user = User1,
+          role = Role1).save()
+
+MailBox(owner = "Admin",
+        sender = "Admin",
+	title = "First Message",
+	message = "I am the Admin!").save()

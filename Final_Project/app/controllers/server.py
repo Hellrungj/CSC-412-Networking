@@ -4,8 +4,8 @@
 # Messaging Server v0.1.0
 import socket
 import hashlib
-from models import *
-from LOGGING import Logging
+# from models import *
+from logging import *
 
 class Server():
   def __init__(self, host, port):

@@ -7,7 +7,7 @@ import os, sys
 import importlib
 
 # Don't forget to import your own models!
-from models import *
+from app import *
 
 conf = load_config('config/config.yaml')
 

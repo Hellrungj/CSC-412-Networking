@@ -1,0 +1,14 @@
+04-27-2017 02:03:24 Server started
+04-27-2017 02:03:24 Server started
+04-27-2017 02:02:39 Server started
+04-27-2017 02:03:33 Connect by ('127.0.0.1', 41664)
+04-27-2017 02:03:33 <socket._socketobject object at 0x7f798144ad70> MSG:b57e2519e26151feacdbe52076bc39ec CONNECT
+04-27-2017 02:03:33 Connected with Client
+04-27-2017 02:03:51 Connect by ('127.0.0.1', 41665)
+04-27-2017 02:03:51 <socket._socketobject object at 0x7f798144aec0> MSG:006e9a8fd91f740e5538f27ea8d58bea REGISTER hellrungj Natioh22 hellrungj@berea.edu
+04-27-2017 02:05:08 Server started
+04-27-2017 02:05:14 Connect by ('127.0.0.1', 41672)
+04-27-2017 02:05:14 <socket._socketobject object at 0x7ff165dd5d70> MSG:b57e2519e26151feacdbe52076bc39ec CONNECT
+04-27-2017 02:05:14 Connected with Client
+04-27-2017 02:05:32 Connect by ('127.0.0.1', 41673)
+04-27-2017 02:05:32 <socket._socketobject object at 0x7ff165dd5ec0> MSG:006e9a8fd91f740e5538f27ea8d58bea REGISTER hellrungj Natioh22 hellrungj@berea.edu

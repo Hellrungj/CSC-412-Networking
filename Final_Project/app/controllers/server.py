@@ -5,7 +5,7 @@
 import socket
 import hashlib
 from models import *
-from LOGGING import Logging
+from logging import Logging
 
 class Server():
   def __init__(self, host, port):

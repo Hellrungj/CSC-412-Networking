@@ -2,9 +2,9 @@
 import socket
 import sys
 import hashlib #For the checksum
-from INTERPRETER import Interpreter
-from CHECKSUM import Checksum
-from LOGGING import Logging
+from interpreter import Interpreter
+from checksum import Checksum
+from logging import Logging
 
 MSGLEN = 1
 

@@ -7,9 +7,9 @@ import os, sys
 import importlib
 
 # Don't forget to import your own models!
-from models import *
+from app import *
 
-conf = load_config('config.yaml')
+conf = load_config('config/config.yaml')
 
 sqlite_dbs  = [ conf['databases']['dev']
                 # add more here if multiple DBs

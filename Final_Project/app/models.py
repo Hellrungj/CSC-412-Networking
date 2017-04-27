@@ -1,7 +1,7 @@
 from peewee import *
-from loadConfig import *
+from app.loadConfig import *
 
-cfg = load_config('config.yaml')
+cfg = load_config('config/config.yaml')
 db = SqliteDatabase(cfg['databases']['dev'])
 
 # Create database connection object

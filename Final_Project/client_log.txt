@@ -1,8 +1,0 @@
-04-27-2017 02:03:33 Client started
-04-27-2017 02:03:51 MSG: REGISTER hellrungj Natioh22 hellrungj@berea.edu
-04-27-2017 02:05:14 Client started
-04-27-2017 02:05:32 MSG: REGISTER hellrungj Natioh22 hellrungj@berea.edu
-04-27-2017 02:08:56 Client started
-04-27-2017 02:09:23 MSG: REGISTER hellrungj Natioh2 hellrungj@berea.edu
-04-27-2017 02:09:23 MSG: 26ee27aa55dd8470b4a5cc8f74eb2087 OK: Successfully Registered.
-04-27-2017 02:09:29 Client ended

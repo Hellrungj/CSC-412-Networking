@@ -11,7 +11,7 @@ MSGLEN = 1
 class Client():
   def __init__(self, host, port):
     self.server_address = (host, port)
-    self.Log = Logging("client_log.txt")
+    self.Log = Logging("data/client_log.txt")
     self.Current_Users = []
 
   def receive_message(self):

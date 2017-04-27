@@ -11,7 +11,7 @@ class Server():
   def __init__(self, host, port):
     self.server_address = (host, port)
     self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)    
-    self.Log = Logging("server_log.txt")    
+    self.Log = Logging("data/server_log.txt")    
 
   def start_server (self):
     self.Log.start_log()

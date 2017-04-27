@@ -35,3 +35,11 @@ UserRoles:[('USER:', u'1', 'ROLE:', u'1')]
 04-26-2017 05:40:06 MSG: LOGOUT hellrungj Natioh22
 04-26-2017 05:40:06 MSG: eb8ec0e37d0dc7b81a83b1d088bd6b71 LOGOUT: hellrungj has successfully logged in
 04-26-2017 05:40:10 Client ended
+04-27-2017 02:39:50 Client started
+04-27-2017 02:40:04 MSG: LOGIN hellrungj Natioh22
+04-27-2017 02:40:04 MSG: b205c612fa7a4281872ecf9069b8a7f9 ERROR: Password invald
+04-27-2017 02:40:24 MSG: LOGIN Natioh2 
+04-27-2017 02:40:24 MSG: c0e7dc2a11f42d90fd482f16ee308b22 ERROR: User does not exsited
+04-27-2017 02:40:37 MSG: LOGIN hellrungj Natioh2
+04-27-2017 02:40:37 MSG: a20d0438d3924c1fad61f3d9a3fe47b7 LOGIN: hellrungj has successfully logged in.
+04-27-2017 02:40:42 Client ended

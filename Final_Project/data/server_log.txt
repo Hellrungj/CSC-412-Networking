@@ -140,3 +140,16 @@
 04-26-2017 05:40:06 Connect by ('127.0.0.1', 37966)
 04-26-2017 05:40:06 <socket._socketobject object at 0x7f167871f9f0> MSG:9fdd3b03a1680aad0b0c05e95ebe2709 LOGOUT hellrungj Natioh22
 04-26-2017 05:40:06 hellrungj logout
+04-27-2017 02:39:44 Server started
+04-27-2017 02:39:50 Connect by ('127.0.0.1', 41785)
+04-27-2017 02:39:50 <socket._socketobject object at 0x7fd91288fd70> MSG:b57e2519e26151feacdbe52076bc39ec CONNECT
+04-27-2017 02:39:50 Connected with Client
+04-27-2017 02:40:04 Connect by ('127.0.0.1', 41788)
+04-27-2017 02:40:04 <socket._socketobject object at 0x7fd91288fec0> MSG:487b8b6e29cb578e45cfc76d9d8af4d2 LOGIN hellrungj Natioh22
+04-27-2017 02:40:04 hellrungj Loggin Error
+04-27-2017 02:40:24 Connect by ('127.0.0.1', 41790)
+04-27-2017 02:40:24 <socket._socketobject object at 0x7fd91288ffa0> MSG:492f9c7df81b555443703c8b42c3ed34 LOGIN Natioh2 
+04-27-2017 02:40:24 Natioh2 User Error
+04-27-2017 02:40:37 Connect by ('127.0.0.1', 41791)
+04-27-2017 02:40:37 <socket._socketobject object at 0x7fd91288fec0> MSG:cb0af1c610904529c9bf04244407385c LOGIN hellrungj Natioh2
+04-27-2017 02:40:37 hellrungj login
